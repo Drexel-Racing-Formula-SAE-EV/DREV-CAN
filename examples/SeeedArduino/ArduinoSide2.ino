@@ -31,18 +31,20 @@ void loop() {
             // else
             //     Serial.println("failed to write to bus");
 
-            Serial.println(canBus.sendMsgBuf(ID, 0, 8, message));
+            Serial.println(canBus.sendMsgBuf(ID, 0, 1, message));
 
             last_write_time = millis();
         }
     #elif MODE == RECEIVE
-        if(canBus.checkReceive()) {
+		Serial.print("checkReceive(): ");
+		Serial.println(canBus.checkReceive());
+        if(canBus.checkReceive() == CAN_MSGAVAIL) {
             Serial.println("message available");
 
             byte length;
             unsigned char message[8];
 
-            if(canBus.readMsgBuf(&length, message)) {
+            if(canBus.readMsgBuf(&length, message) != CAN_NOMSG) {
                 Serial.print("ID: ");
                 Serial.print(canBus.getCanId(), HEX);
                 Serial.print(", Length: ");

@@ -10,7 +10,7 @@
 #define SEND 1
 #define RECEIVE 2
 
-#define MODE SEND
+#define MODE RECEIVE
 
 unsigned long last_write_time = 0;
 

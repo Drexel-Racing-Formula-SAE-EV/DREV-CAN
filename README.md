@@ -8,6 +8,10 @@ This code has not yet been cleaned up and still requires source changes. It is a
 
 * Restructuring the project to a more sensible structure
 * Selecting one Arduino CAN library between the two examples
+	* Both have been tested
+	* The SparkFun library is the driver made for this specific arduino shield, but the Seeed one seems to have a more active github repository
+	* Furthermore, it is specified to work with the MCP2551, which is the tranceiver on the SparkFun shield
+	* For these reasons, it will be selected over the SparkFun library
 * Containing the libraries in one header/interface
 * Moving that header and source to its own git submodule
 * Making a more robust example which includes more than a proof of concept
