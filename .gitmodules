@@ -1,3 +1,0 @@
-[submodule "Seeed_Arduino_CAN"]
-	path = lib/Seeed_Arduino_CAN
-	url = https://github.com/Seeed-Studio/Seeed_Arduino_CAN
