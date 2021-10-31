@@ -20,7 +20,7 @@ Currently, installation unfortunately requires the manual installation of the un
 
 2. Install this library
 
-		git clone https://github.com/Drexel-Racing-Formula-SAE-EV/can-example.git
+		git clone https://github.com/Drexel-Racing-Formula-SAE-EV/DREV-CAN.git
 
 ## Circuit Description
 
