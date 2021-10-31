@@ -1,20 +1,13 @@
-# CAN Example
+# Drexel Racing Formula EV CAN Library
 
-This is an example project containing working CAN communication between and among Arduinos and Teensies.
+This is a CAN library for use of the Drexel EV team. It provides a layer of abstraction over the CAN tranceiver drivers so that the same interface is used for both Arduinos and Teensies. Furthermore, it provides a simpler interface and hides away the lower level handling.
 
-## Disclaimers and TODOs
+# TODO
 
-This code has not yet been cleaned up and still requires source changes. It is a very basic example requiring one device to be sending and one device to be receiving. It will go through several iterations before being a "complete" example. These changes include:
+This code has not yet been cleaned up and still requires a lot of work. 
 
-* ~~Restructuring the project to a more sensible structure~~
-* ~~Selecting one Arduino CAN library between the two examples~~
-	* Both have been tested
-	* The SparkFun library is the driver made for this specific arduino shield, but the Seeed one seems to have a more active github repository
-	* Furthermore, it is specified to work with the MCP2551, which is the tranceiver on the SparkFun shield
-	* For these reasons, it will be selected over the SparkFun library
 * Creating a single class structure to interface with the CAN libraries
-* ~~Moving that header and source to its own git submodule~~
-	* Instead, the examples have been moved to `./examples` and the library will be contained in `./src`
+	* Parent class for abstracted use with children classes for use of different drivers
 * Making a more robust example which includes more than a proof of concept
 
 ## Installation
