@@ -1,5 +1,5 @@
-#ifndef __CAN_H__
-#define __CAN_H__
+#ifndef __DREV_CAN_H__
+#define __DREV_CAN_H__
 
 #include <mcp2515_can.h>
 
@@ -10,6 +10,7 @@
 #define DREV_CAN_OK (0)
 #define DREV_CAN_NOMSG (1)
 #define DREV_CAN_WRONGID (2)
+#define DREV_CAN_SENDFAIL (3)
 
 class DrevCan {
 public:
@@ -26,4 +27,4 @@ private:
 	uint32_t id;
 };
 
-#endif /* __CAN_H__ */
+#endif /* __DREV_CAN_H__ */

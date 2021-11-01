@@ -4,8 +4,12 @@ DrevCan::DrevCan(uint32_t id): controller(SPI_PORT), id(id) {
     controller.begin(CAN_SPEED);
 }
 
-DrevCan::sendMessage(void *data, size_t length) {
-	controller.sendMsgBuf((unsigned long) this->id, 0, (byte) length, (byte*) data);
+int DrevCan::sendMessage(void *data, size_t length) {
+	if(controller.sendMsgBuf((unsigned long) this->id, 0, (byte) length, (byte*) data) == CAN_FAILTX) {
+		return DREV_CAN_SENDFAIL;
+	}
+
+	return DREV_CAN_OK;
 }
 
 int DrevCan::readMessage(void *data, size_t *length) {
