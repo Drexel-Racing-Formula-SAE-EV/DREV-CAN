@@ -8,7 +8,7 @@
 #define SEND 1
 #define RECEIVE 2
 
-#define MODE RECEIVE
+#define MODE SEND
 
 DrevCan canBus(ID);
 unsigned long last_write_time = 0;
@@ -30,7 +30,7 @@ void loop() {
             // else
             //     Serial.println("failed to write to bus");
 
-            Serial.println(canBus.sendMsgBuf(ID, 0, 1, message));
+            Serial.println(canBus.sendMessage(message, 1));
 
             last_write_time = millis();
         }

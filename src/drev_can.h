@@ -15,7 +15,7 @@ class DrevCan {
 public:
 	DrevCan(uint32_t id);
 
-	int sendMessage(String message);
+	int sendMessage(void *data, size_t length);
 
 	bool available();
 	int readMessage(void *data, size_t *length);
