@@ -12,20 +12,23 @@
 #define DREV_CAN_WRONGID (2)
 #define DREV_CAN_SENDFAIL (3)
 
-class DrevCan {
-public:
-    DrevCan(uint32_t id);
+namespace drev_can {
 
-    int sendMessage(void* data, size_t length);
+class bus {
+public:
+    bus(uint16_t id);
+
+    int read(void* data, size_t* length);
+    int send(void* data, size_t length);
 
     bool available();
-    int readMessage(void* data, size_t* length);
-
-    uint32_t getId() { return id; }
+    uint16_t id() { return m_id; }
 
 private:
-    mcp2515_can controller;
-    uint32_t id;
+    mcp2515_can m_controller;
+    uint16_t m_id;
 };
+
+} // namespace drev_can
 
 #endif /* DREV_CAN_H */
