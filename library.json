@@ -1,0 +1,19 @@
+{
+	"name": "DREV-CAN",
+	"version": "0.0.2",
+	"description": "Drexel Racing Formula EV library for communicating over CAN",
+	"homepage": "https://formulaev.coe.drexel.edu/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Drexel-Racing-Formula-SAE-EV/DREV-CAN"
+	},
+	"license": "MIT",
+	"authors": {
+		"name": "Ben Esposito",
+		"email": "benpesposito@gmail.com",
+		"maintainer": true
+	},
+	"dependencies": {
+		"CAN_BUS_Shield": "https://github.com/Seeed-Studio/Seeed_Arduino_CAN"
+	}
+}

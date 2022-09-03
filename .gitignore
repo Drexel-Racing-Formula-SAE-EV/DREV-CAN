@@ -1,2 +1,4 @@
-*.arduino.*
+.pio
+
+.vscode
 .vimrc
