@@ -1,5 +1,5 @@
-#ifndef __DREV_CAN_H__
-#define __DREV_CAN_H__
+#ifndef DREV_CAN_H
+#define DREV_CAN_H
 
 #include <mcp2515_can.h>
 
@@ -14,17 +14,18 @@
 
 class DrevCan {
 public:
-	DrevCan(uint32_t id);
+    DrevCan(uint32_t id);
 
-	int sendMessage(void *data, size_t length);
+    int sendMessage(void* data, size_t length);
 
-	bool available();
-	int readMessage(void *data, size_t *length);
+    bool available();
+    int readMessage(void* data, size_t* length);
 
-	uint32_t getId() { return id; }
+    uint32_t getId() { return id; }
+
 private:
-	mcp2515_can controller;
-	uint32_t id;
+    mcp2515_can controller;
+    uint32_t id;
 };
 
-#endif /* __DREV_CAN_H__ */
+#endif /* DREV_CAN_H */
