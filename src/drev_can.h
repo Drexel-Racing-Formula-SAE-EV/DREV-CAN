@@ -14,12 +14,17 @@
 
 namespace drev_can {
 
+struct message {
+    uint8_t data[8];
+    uint8_t length;
+};
+
 class bus {
 public:
     bus(uint16_t id);
 
-    int read(void* data, size_t* length);
-    int send(void* data, size_t length);
+    int read(message& message);
+    int send(const message& message);
 
     bool available();
     uint16_t id() { return m_id; }

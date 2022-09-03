@@ -6,20 +6,20 @@ bus::bus(uint16_t id) : m_controller(SPI_PORT), m_id(id) {
     m_controller.begin(CAN_SPEED);
 }
 
-int bus::send(void* data, size_t length) {
-    if (m_controller.sendMsgBuf((unsigned long) m_id, 0, (byte) length,
-                                (byte*) data) == CAN_FAILTX) {
+int bus::send(const message& message) {
+    if (m_controller.sendMsgBuf((unsigned long) m_id, 0, (byte) message.length,
+                                (byte*) message.data) == CAN_FAILTX) {
         return DREV_CAN_SENDFAIL;
     }
 
     return DREV_CAN_OK;
 }
 
-int bus::read(void* data, size_t* length) {
+int bus::read(message& message) {
     unsigned long id;
 
-    if (m_controller.readMsgBufID(&id, (byte*) &length, (byte*) data) ==
-        CAN_NOMSG) {
+    if (m_controller.readMsgBufID(&id, (byte*) &message.length,
+                                  (byte*) message.data) == CAN_NOMSG) {
         return DREV_CAN_NOMSG;
     }
 
