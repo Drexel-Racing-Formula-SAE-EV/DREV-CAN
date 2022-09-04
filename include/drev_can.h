@@ -21,15 +21,45 @@ struct message {
 
 class node {
 public:
+    /**
+     * @brief create a node on the CAN bus
+     */
     node(uint16_t id);
 
+    /**
+     * @brief check for if a message is available
+     * @return true if message is available, false if not
+     */
     bool available();
 
+    /**
+     * @breif read a can message for any id
+     *
+     * @param message the received message
+     * @return OK for success, NOMSG for no message
+     */
     int read_all(message& message);
 
+    /**
+     * @brief read a can message only for this node's id
+     *
+     * @param message the received message
+     * @return OK for success, NOMSG for no message
+     */
     int read(message& message);
+
+    /**
+     * @brief send a message
+     *
+     * @param message the message
+     * @return OK for success, SENDFAIL for failure
+     */
     int send(const message& message);
 
+    /**
+     * @brief get the id of the node
+     * @return the id of the node
+     */
     uint16_t id();
 
 private:
