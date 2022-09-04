@@ -9,29 +9,32 @@
 /* return values */
 #define DREV_CAN_OK (0)
 #define DREV_CAN_NOMSG (1)
-#define DREV_CAN_WRONGID (2)
-#define DREV_CAN_SENDFAIL (3)
+#define DREV_CAN_SENDFAIL (2)
 
 namespace drev_can {
 
 struct message {
-    uint8_t data[8];
+    uint16_t id;
     uint8_t length;
+    uint8_t data[8];
 };
 
-class bus {
+class node {
 public:
-    bus(uint16_t id);
+    node(uint16_t id);
+
+    bool available();
+
+    int read_all(message& message);
 
     int read(message& message);
     int send(const message& message);
 
-    bool available();
-    uint16_t id() { return m_id; }
+    uint16_t id();
 
 private:
-    mcp2515_can m_controller;
     uint16_t m_id;
+    mcp2515_can m_controller;
 };
 
 } // namespace drev_can

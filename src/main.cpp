@@ -1,7 +1,7 @@
 #include <drev_can.h>
 
 void setup() {
-	drev_can::bus can_bus(0);
+    drev_can::node can_node(0);
 }
 
 void loop() {}
