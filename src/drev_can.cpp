@@ -11,9 +11,8 @@ bool node::available() {
 }
 
 int node::read_all(message& message) {
-    if (m_controller.readMsgBufID((unsigned long*) &message.id,
-                                  (byte*) &message.length,
-                                  (byte*) message.data) == CAN_NOMSG) {
+    if (m_controller.readMsgBufID(reinterpret_cast<unsigned long*>(&message.id),
+                                  &message.length, message.data) == CAN_NOMSG) {
         return DREV_CAN_NOMSG;
     }
 
@@ -35,9 +34,9 @@ int node::read(message& message) {
 }
 
 int node::send(const message& message) {
-    if (m_controller.sendMsgBuf((unsigned long) m_id, 0, 0,
-                                (byte) message.length,
-                                (byte*) message.data) == CAN_FAILTX) {
+    if (m_controller.sendMsgBuf(m_id, 0, 0,
+                                reinterpret_cast<byte>(message.length),
+                                message.data) == CAN_FAILTX) {
         return DREV_CAN_SENDFAIL;
     }
 
