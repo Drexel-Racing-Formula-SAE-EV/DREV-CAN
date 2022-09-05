@@ -1,7 +1,7 @@
-#ifndef DREV_CAN_H
-#define DREV_CAN_H
+#ifndef DREV_CAN_NODE_BASE_H
+#define DREV_CAN_NODE_BASE_H
 
-#include <mcp2515_can.h>
+#include <stdint.h>
 
 #define SPI_PORT 10
 #define CAN_SPEED CAN_500KBPS
@@ -13,24 +13,24 @@
 
 namespace drev_can {
 
-struct message {
+struct can_message {
     uint16_t id;
     uint8_t length;
     uint8_t data[8];
 };
 
-class node {
+class can_node_base {
 public:
     /**
      * @brief create a node on the CAN bus
      */
-    node(uint16_t id);
+    can_node_base(uint16_t id);
 
     /**
      * @brief check for if a message is available
      * @return true if message is available, false if not
      */
-    bool available();
+    virtual bool available() = 0;
 
     /**
      * @breif read a can message for any id
@@ -38,15 +38,7 @@ public:
      * @param message the received message
      * @return OK for success, NOMSG for no message
      */
-    int read_all(message& message);
-
-    /**
-     * @brief read a can message only for this node's id
-     *
-     * @param message the received message
-     * @return OK for success, NOMSG for no message
-     */
-    int read(message& message);
+    virtual int read_all(can_message& message) = 0;
 
     /**
      * @brief send a message
@@ -54,7 +46,15 @@ public:
      * @param message the message
      * @return OK for success, SENDFAIL for failure
      */
-    int send(const message& message);
+    virtual int send(const can_message& message) = 0;
+
+    /**
+     * @brief read a can message only for this node's id
+     *
+     * @param message the received message
+     * @return OK for success, NOMSG for no message
+     */
+    int read(can_message& message);
 
     /**
      * @brief get the id of the node
@@ -64,9 +64,8 @@ public:
 
 private:
     uint16_t m_id;
-    mcp2515_can m_controller;
 };
 
 } // namespace drev_can
 
-#endif /* DREV_CAN_H */
+#endif /* DREV_CAN_NODE_BASE_H */
