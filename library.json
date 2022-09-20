@@ -23,5 +23,8 @@
 			"version": "https://github.com/pawelsky/FlexCAN_Library",
 			"platforms": ["teensy"]
 		}
-	]
+	],
+	"build": {
+		"libCompatMode": "strict"
+	}
 }
