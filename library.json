@@ -25,6 +25,7 @@
 		}
 	],
 	"build": {
-		"libCompatMode": "strict"
+		"libCompatMode": "strict",
+		"extraScript": "extra_script.py"
 	}
 }
