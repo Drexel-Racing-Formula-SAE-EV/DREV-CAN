@@ -6,7 +6,7 @@
 #include <FlexCAN.h>
 
 namespace drev_can {
-class can_node_teensy final : can_node_base {
+class can_node_teensy final : public can_node_base {
 public:
     can_node_teensy(uint16_t id);
 

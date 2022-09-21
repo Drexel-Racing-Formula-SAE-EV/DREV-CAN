@@ -6,7 +6,7 @@
 #include <mcp2515_can.h>
 
 namespace drev_can {
-class can_node_arduino final : can_node_base {
+class can_node_arduino final : public can_node_base {
 public:
     can_node_arduino(uint16_t id);
 
