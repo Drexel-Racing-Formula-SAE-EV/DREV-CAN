@@ -15,7 +15,8 @@
 	},
 	"dependencies": [
 		{
-			"name": "seeed-studio/CAN_BUS_Shield",
+			"name": "CAN_BUS_Shield",
+			"version": "https://github.com/seeed-studio/CAN_BUS_Shield",
 			"platforms": ["atmelavr"]
 		},
 		{
