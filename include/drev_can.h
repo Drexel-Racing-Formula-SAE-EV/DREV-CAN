@@ -1,4 +1,5 @@
 #ifndef DREV_CAN_H
+#define DREV_CAN_H
 
 #if defined(ARDUINO_AVR_UNO)
 #include "can_node_arduino.h"
