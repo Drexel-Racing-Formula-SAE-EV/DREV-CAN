@@ -10,7 +10,7 @@
 
 #define MODE SEND
 
-DrevCan canBus(ID);
+drev_can::can_node canBus(ID);
 unsigned long last_write_time = 0;
 
 void setup() {
@@ -20,17 +20,17 @@ void setup() {
 void loop() {
     #if MODE == SEND
         if(millis() - last_write_time > 1000) {
-            unsigned char message[8];
-
-            // writeBuffer("test", message);
-            message[0] = 40;
+           
+           drev_can::can_message message{
+            .data[0] = 40 // write test data to a message
+           };
             
             // if(mcp2515_send_message(&message))
             //     Serial.println("wrote to bus");
             // else
             //     Serial.println("failed to write to bus");
 
-            Serial.println(canBus.sendMessage(message, 1));
+            Serial.println(canBus.send(message));
 
             last_write_time = millis();
         }
@@ -40,22 +40,19 @@ void loop() {
             Serial.println("message available");
 
 			int ret;
-            size_t length;
-            unsigned char message[8];
+            drev_can::can_message message; 
 
-			ret = canBus.readMessage(message, &length);
+			ret = canBus.readall(message); 
             if(ret == DREV_CAN_NOMSG) {
                 Serial.println("no msg");
-			} else if(ret == DREV_CAN_WRONGID) {
-                Serial.println("wrong id");
 			} else {
 				Serial.print("ID: ");
-				Serial.print(canBus.getId());
+				Serial.print(canBus.id());
 				Serial.print(", Length: ");
-				Serial.print(length);
+				Serial.print(message.length);
 				Serial.print(", Data: ");
-				for(int i = 0; i < length; i++) {
-					Serial.print(message[i], HEX);
+				for(int i = 0; i < message.length; i++) {
+					Serial.print(message.data[i], HEX);
 					Serial.print(" ");
 				}
 				
