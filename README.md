@@ -9,6 +9,7 @@ This code has not yet been cleaned up and still requires a lot of work.
 * Creating a single class structure to interface with the CAN libraries
 	* Parent class for abstracted use with children classes for use of different drivers
 * Making a more robust example which includes more than a proof of concept
+* Go over the entire library and make sure that everything works as intended, because it is broken as of 11/12/2022
 
 ## Installation
 
